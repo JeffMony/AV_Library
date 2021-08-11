@@ -11,12 +11,16 @@
 
 上面简单介绍了一下各个库，这些库如何编译了，下面一一介绍:
 
-### 1.编译openssl
+
+### 1.编译前准备
+配置环境变量ANROID_NDK，这儿我选择的编辑版本是android-ndk-r14b
+
+### 2.编译openssl
 执行init_openssl.sh<br>
 openssl源码下载到./sources/openssl目录下<br>
 进入./sources目录，执行./compile_openssl.sh all
 
-### 2.编译fdk-aac
+### 3.编译fdk-aac
 执行init_fdkaac.sh<br>
 fdk-aac源码下载到./sources/fdk-aac目录下<br>
 进入./sources目录，执行./compile_fdkaac.sh all<br>
@@ -44,12 +48,12 @@ make: *** [libSBRdec/src/lpp_tran.lo] Error 1
 
 
 
-### 3.编译libx264
+### 4.编译libx264
 执行init_libx264.sh<br>
 libx264源码下载到./sources/libx264目录下<br>
 进入./sources目录，执行./compile_libx264.sh all
 
-### 4.编译ffmpeg
+### 5.编译ffmpeg
 执行init_ffmpeg.sh<br>
 ffmpeg源码下载到./sources/ffmpeg目录下<br>
 进入./sources目录，执行./compile_ffmpeg.sh all
