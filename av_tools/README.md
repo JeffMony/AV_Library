@@ -13,7 +13,9 @@
 
 
 ### 1.编译前准备
-配置环境变量ANROID_NDK，这儿我选择的编辑版本是android-ndk-r14b
+配置环境变量ANROID_NDK，这儿我选择的NDK版本是android-ndk-r14b<br>
+选择NDK版本要慎重一点，因为有些NDK会成功，有些会失败<br>
+首先要在环境变量中配置ANDROID_NDK
 
 ### 2.编译openssl
 执行init_openssl.sh<br>
@@ -130,4 +132,6 @@ ERROR: libfdk_aac not found
 EXTRA_LDFLAGS="${EXTRA_LDFLAGS} -L${FDKAAC_LIB_DIR}/lib -lfdk-aac -lm"
 
 ```
+加上了-lm 编译正常了。
+
 
