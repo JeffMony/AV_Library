@@ -83,6 +83,7 @@ build() {
     OPENSSL_LIB_DIR=${BUILD_DIR}/openssl/${ARCH}
     if [ -f "${OPENSSL_LIB_DIR}/lib/libssl.a" ]; then
     	echo "OpenSSL detected"
+    	EXTRA_OPTIONS="${EXTRA_OPTIONS} --enable-nonfree"
     	EXTRA_OPTIONS="${EXTRA_OPTIONS} --enable-openssl"
     	EXTRA_CFLAGS="${EXTRA_CFLAGS} -I${OPENSSL_LIB_DIR}/include"
     	EXTRA_LDFLAGS="${EXTRA_LDFLAGS} -L${OPENSSL_LIB_DIR}/lib -lssl -lcrypto"
@@ -102,10 +103,20 @@ build() {
     FDKAAC_LIB_DIR=${BUILD_DIR}/fdk-aac/${ARCH}
 	if [ -f "${FDKAAC_LIB_DIR}/lib/libfdk-aac.a" ]; then
 		echo "libfdk-aac detected"
+		EXTRA_OPTIONS="${EXTRA_OPTIONS} --enable-nonfree"
 		EXTRA_OPTIONS="${EXTRA_OPTIONS} --enable-libfdk-aac"
+		EXTRA_OPTIONS="${EXTRA_OPTIONS} --enable-encoder=libfdk_aac"
+		EXTRA_OPTIONS="${EXTRA_OPTIONS} --enable-muxer=adts"
 		EXTRA_CFLAGS="${EXTRA_CFLAGS} -I${FDKAAC_LIB_DIR}/include"
-    	EXTRA_LDFLAGS="${EXTRA_LDFLAGS} -L${FDKAAC_LIB_DIR}/lib -lfdk-aac"
+    	EXTRA_LDFLAGS="${EXTRA_LDFLAGS} -L${FDKAAC_LIB_DIR}/lib -lfdk-aac -lm"
     fi
+
+    echo ${EXTRA_OPTIONS}
+    echo ${EXTRA_CFLAGS}
+    echo ${EXTRA_LDFLAGS}
+
+    echo ${CROSS_PREFIX}
+    echo ${SYSROOT}
 
 	./configure \
 	--prefix=${ARCH_PREFIX} \
@@ -122,6 +133,7 @@ build() {
 	--disable-ffplay \
 	--disable-ffprobe \
 	--enable-small \
+	${EXTRA_OPTIONS} \
 	--enable-cross-compile \
 	--cross-prefix=${CROSS_PREFIX} \
 	--target-os=android \

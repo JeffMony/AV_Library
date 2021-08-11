@@ -39,7 +39,6 @@ build() {
 	android-${ARCH} \
 	-D__ANDROID_API__=24 \
     no-shared \
-    no-ssl2 \
     no-ssl3 \
     no-comp \
     no-hw \

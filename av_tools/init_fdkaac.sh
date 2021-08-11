@@ -3,7 +3,7 @@
 # download fdk-aac source
 
 FDKAAC_UPSTREAM=https://github.com/mstorsjo/fdk-aac
-TAG_NAME=v2.0.2
+TAG_NAME=v0.1.6
 
 CUR_DIR=$(pwd)
 
