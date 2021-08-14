@@ -1,3 +1,14 @@
+  - [音视频相关库的编译文档](#音视频相关库的编译文档)
+    - [1.编译前准备](#1编译前准备)
+    - [2.编译openssl](#2编译openssl)
+    - [3.编译fdk-aac](#3编译fdk-aac)
+    - [4.编译libx264](#4编译libx264)
+    - [5.编译ffmpeg](#5编译ffmpeg)
+      - [5.1 openssl找不到](#51-openssl找不到)
+      - [5.2 AACENC_InfoStruct缺失encoderDelay](#52-aacenc_infostruct缺失encoderdelay)
+      - [5.3 libfdk_aac找不到](#53-libfdk_aac找不到)
+
+
 ## 音视频相关库的编译文档
 我们在做音视频相关产品的时候，离不开一些重要的库，下面列举一下：
 > * ffmpeg : 多媒体框架库，是音视频开发非常重要的一个库
