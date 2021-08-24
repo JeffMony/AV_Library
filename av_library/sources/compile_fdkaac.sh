@@ -71,11 +71,9 @@ build() {
 
     ./configure \
 	--prefix=${ARCH_PREFIX} \
-	--disable-asm \
 	--enable-static \
 	--disable-shared \
 	--disable-dependency-tracking \
-	--enable-strip \
 	--with-pic=no \
 	--target=android \
 	--host=$HOST \

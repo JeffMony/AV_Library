@@ -111,6 +111,7 @@ build() {
     	EXTRA_LDFLAGS="${EXTRA_LDFLAGS} -L${FDKAAC_LIB_DIR}/lib -lfdk-aac -lm"
     fi
 
+
 	./configure \
 	--prefix=${ARCH_PREFIX} \
 	--disable-doc \
