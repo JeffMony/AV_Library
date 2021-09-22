@@ -14,8 +14,6 @@ LIBX264_SOURCE_DIR=${CUR_DIR}/libx264
 
 ARCH_PREFIX=
 
-API=24
-
 ARCH=$1
 
 PLATFORM=
@@ -41,6 +39,8 @@ build() {
 	echo "开始编译 ${ARCH} so"
 
 	PLATFORM=$2
+
+	API=$3
 
 	if [ "${ARCH}" == "arm" ];
 	then
@@ -93,25 +93,25 @@ build() {
 
 case "${ARCH}" in
 	"")
-        build arm arm-linux-androideabi
+        build arm arm-linux-androideabi 18
     ;;
     arm)
-        build arm arm-linux-androideabi
+        build arm arm-linux-androideabi 18
     ;;
     arm64)
-        build arm64 aarch64-linux-android
+        build arm64 aarch64-linux-android 21
     ;;
     x86)
-        build x86 x86
+        build x86 x86 18
     ;;
     x86_64)
-        build x86_64 x86_64
+        build x86_64 x86_64 21
     ;;
     all)
-        build arm arm-linux-androideabi
-        build arm64 aarch64-linux-android
-        build x86 x86
-        build x86_64 x86_64
+        build arm arm-linux-androideabi 18
+        build arm64 aarch64-linux-android 21
+        build x86 x86 18
+        build x86_64 x86_64 21
     ;;
     clean)
          clean
