@@ -9,13 +9,11 @@ CUR_DIR=$(pwd)
 
 BUILD_DIR=${CUR_DIR}/build
 
-PREFIX=${BUILD_DIR}/ffmpeg
+PREFIX=${BUILD_DIR}/ffmpeg-static
 
 FFMPEG_SOURCE_DIR=${CUR_DIR}/ffmpeg
 
 ARCH_PREFIX=
-
-API=24
 
 ARCH=$1
 
@@ -35,24 +33,42 @@ LIBX264_LIB_DIR=
 
 FDKAAC_LIB_DIR=
 
-EXTRA_OPTIONS=
-
 EXTRA_CFLAGS=
 
 EXTRA_LDFLAGS=
 
 cd ${FFMPEG_SOURCE_DIR}
 
+# #-----------------------
+# # 这儿是编译的选项
+# #-----------------------
+source ${CUR_DIR}/config/module-audio.sh
+# #-----------------------
+# #-----------------------
+
 
 clean() {
 	rm -rf ${PREFIX} 
 }
 
+init_config() {
+	EXTRA_OPTIONS=""
+	EXTRA_OPTIONS="${EXTRA_OPTIONS} --disable-shared"
+	EXTRA_OPTIONS="${EXTRA_OPTIONS} --enable-static"
+
+	EXTRA_OPTIONS="${EXTRA_OPTIONS} ${COMMON_FFMPEG_CONFIG}"
+}
+
 build() {
+
+	init_config
+
 	ARCH=$1
 	echo "开始编译 ${ARCH} so"
 
 	PLATFORM=$2
+
+	API=$3
 
 	if [ "${ARCH}" == "arm" ];
 	then
@@ -114,22 +130,10 @@ build() {
 
 	./configure \
 	--prefix=${ARCH_PREFIX} \
-	--disable-doc \
-	--enable-shared \
-	--disable-static \
-	--disable-x86asm \
-	--disable-asm \
-	--disable-symver \
-	--disable-devices \
-	--disable-avdevice \
-	--enable-gpl \
-	--disable-ffmpeg \
-	--disable-ffplay \
-	--disable-ffprobe \
-	--enable-small \
 	${EXTRA_OPTIONS} \
-	--enable-cross-compile \
 	--cross-prefix=${CROSS_PREFIX} \
+	--enable-cross-compile \
+	--enable-gpl \
 	--target-os=android \
 	--arch=${ARCH} \
 	--sysroot=${SYSROOT} \
@@ -144,25 +148,25 @@ build() {
 
 case "${ARCH}" in
 	"")
-        build arm arm-linux-androideabi
+        build arm arm-linux-androideabi 18
     ;;
     arm)
-        build arm arm-linux-androideabi
+        build arm arm-linux-androideabi 18
     ;;
     arm64)
-        build arm64 aarch64-linux-android
+        build arm64 aarch64-linux-android 21
     ;;
     x86)
-        build x86 x86
+        build x86 x86 18
     ;;
     x86_64)
-        build x86_64 x86_64
+        build x86_64 x86_64 21
     ;;
     all)
-        build arm arm-linux-androideabi
-        build arm64 aarch64-linux-android
-        build x86 x86
-        build x86_64 x86_64
+        build arm arm-linux-androideabi 18
+        build arm64 aarch64-linux-android 21
+        build x86 x86 18
+        build x86_64 x86_64 21
     ;;
     clean)
          clean
