@@ -39,13 +39,6 @@ EXTRA_LDFLAGS=
 
 cd ${FFMPEG_SOURCE_DIR}
 
-# #-----------------------
-# # 这儿是编译的选项
-# #-----------------------
-source ${CUR_DIR}/config/module-audio.sh
-# #-----------------------
-# #-----------------------
-
 
 clean() {
 	rm -rf ${PREFIX} 
@@ -60,6 +53,21 @@ init_config() {
 }
 
 build() {
+
+	EXTRA_CFLAGS=""
+
+    EXTRA_LDFLAGS=""
+
+    FFMPEG_LOAD_FLAGS=""
+
+    COMMON_FFMPEG_CONFIG=""
+
+    # #-----------------------
+    # # 这儿是编译的选项
+    # #-----------------------
+    source ${CUR_DIR}/config/module-audio.sh
+    # #-----------------------
+    # #-----------------------
 
 	init_config
 
@@ -81,11 +89,13 @@ build() {
 	elif [ "${ARCH}" == "x86" ];
 	then
 		HOST=i686-linux
-    	COMPILE_PLATFORM=i686-linux-android	
+    	COMPILE_PLATFORM=i686-linux-android
+    	EXTRA_OPTIONS="${EXTRA_OPTIONS} --disable-x86asm"
 	elif [ "${ARCH}" == "x86_64" ];
 	then
 		HOST=x86_64-linux
     	COMPILE_PLATFORM=x86_64-linux-android
+    	EXTRA_OPTIONS="${EXTRA_OPTIONS} --disable-x86asm"
 	fi
 	
 	ARCH_PREFIX=${PREFIX}/${ARCH}
@@ -148,24 +158,24 @@ build() {
 
 case "${ARCH}" in
 	"")
-        build arm arm-linux-androideabi 18
+        build arm arm-linux-androideabi 21
     ;;
     arm)
-        build arm arm-linux-androideabi 18
+        build arm arm-linux-androideabi 21
     ;;
     arm64)
         build arm64 aarch64-linux-android 21
     ;;
     x86)
-        build x86 x86 18
+        build x86 x86 21
     ;;
     x86_64)
         build x86_64 x86_64 21
     ;;
     all)
-        build arm arm-linux-androideabi 18
+        build arm arm-linux-androideabi 21
         build arm64 aarch64-linux-android 21
-        build x86 x86 18
+        build x86 x86 21
         build x86_64 x86_64 21
     ;;
     clean)

@@ -64,7 +64,7 @@ build() {
 	rm -rf ${ARCH_PREFIX}
 	
 	SYSROOT=${NDK_ROOT}/platforms/android-${API}/arch-${ARCH}/
-    CROSS_PREFIX=${NDK_ROOT}//toolchains/${PLATFORM}-4.9/prebuilt/darwin-x86_64/bin/${COMPILE_PLATFORM}-
+    CROSS_PREFIX=${NDK_ROOT}/toolchains/${PLATFORM}-4.9/prebuilt/darwin-x86_64/bin/${COMPILE_PLATFORM}-
 
 
     ./autogen.sh
