@@ -37,7 +37,7 @@ EXTRA_CFLAGS=
 
 EXTRA_LDFLAGS=
 
-MODULE_DIR="compat libavcodec libavfilter libavformat libavutil libswresample libswscale"
+MODULE_DIR="compat libavcodec libavformat libavutil libswresample libswscale"
 
 ASM_SUB_MODULE_DIR=
 

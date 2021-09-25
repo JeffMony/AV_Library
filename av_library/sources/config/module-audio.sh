@@ -15,9 +15,9 @@ export COMMON_FFMPEG_CONFIG="${COMMON_FFMPEG_CONFIG} --disable-ffmpeg"
 export COMMON_FFMPEG_CONFIG="${COMMON_FFMPEG_CONFIG} --disable-ffplay"
 export COMMON_FFMPEG_CONFIG="${COMMON_FFMPEG_CONFIG} --disable-ffprobe"
 export COMMON_FFMPEG_CONFIG="${COMMON_FFMPEG_CONFIG} --disable-debug"
+export COMMON_FFMPEG_CONFIG="${COMMON_FFMPEG_CONFIG} --disable-avfilter"
 export COMMON_FFMPEG_CONFIG="${COMMON_FFMPEG_CONFIG} --enable-small"
 export COMMON_FFMPEG_CONFIG="${COMMON_FFMPEG_CONFIG} --enable-pic"
-export COMMON_FFMPEG_CONFIG="${COMMON_FFMPEG_CONFIG} --enable-avfilter"
 export COMMON_FFMPEG_CONFIG="${COMMON_FFMPEG_CONFIG} --enable-avcodec"
 export COMMON_FFMPEG_CONFIG="${COMMON_FFMPEG_CONFIG} --enable-avformat"
 export COMMON_FFMPEG_CONFIG="${COMMON_FFMPEG_CONFIG} --enable-avutil"
@@ -57,11 +57,3 @@ export COMMON_FFMPEG_CONFIG="${COMMON_FFMPEG_CONFIG} --enable-bsf=mp3_header_dec
 
 # 协议
 export COMMON_FFMPEG_CONFIG="${COMMON_FFMPEG_CONFIG} --enable-protocol=file"
-
-# filter
-export COMMON_FFMPEG_CONFIG="${COMMON_FFMPEG_CONFIG} --enable-filter=anull"
-export COMMON_FFMPEG_CONFIG="${COMMON_FFMPEG_CONFIG} --enable-filter=anullsrc"
-export COMMON_FFMPEG_CONFIG="${COMMON_FFMPEG_CONFIG} --enable-filter=anullsink"
-export COMMON_FFMPEG_CONFIG="${COMMON_FFMPEG_CONFIG} --enable-filter=aresample"
-export COMMON_FFMPEG_CONFIG="${COMMON_FFMPEG_CONFIG} --enable-filter=volume"
-export COMMON_FFMPEG_CONFIG="${COMMON_FFMPEG_CONFIG} --enable-filter=amix"
