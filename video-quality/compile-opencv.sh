@@ -1,0 +1,41 @@
+# https://docs.opencv.org/4.x/d0/db2/tutorial_macos_install.html
+
+CURRENT_DIR=$(pwd)
+
+OPENCV_SOURCE_DIR=${CURRENT_DIR}/opencv
+
+OPENCV_CONTRIB_DIR=${CURRENT_DIR}/opencv_contrib
+
+OPENCV_BUILD_DIR=${CURRENT_DIR}/opencv-build
+
+OPENCV_OUTPUT_DIR=${CURRENT_DIR}/opencv-output
+
+
+cd ${OPENCV_BUILD_DIR}
+
+make clean
+
+rm -rf ${OPENCV_OUTPUT_DIR}/*
+rm -rf ${OPENCV_BUILD_DIR}/*
+
+rm -rf ${OPENCV_SOURCE_DIR}/CMakeCache.txt
+rm -rf ${OPENCV_SOURCE_DIR}/CMakeFiles
+
+cmake \
+-DWITH_CUDA=OFF \
+-DWITH_NVCUVID=OFF \
+-DWITH_GSTREAMER=OFF \
+-DCMAKE_BUILD_TYPE=Release \
+-DBUILD_EXAMPLES=ON \
+-DBUILD_ZLIB=OFF \
+-DBUILD_SHARED_LIBS=OFF \
+-DOPENCV_GENERATE_PKGCONFIG=ON \
+-DCMAKE_INSTALL_PREFIX=${OPENCV_OUTPUT_DIR} \
+-DOPENCV_EXTRA_MODULES_PATH=${OPENCV_CONTRIB_DIR}/modules \
+${OPENCV_SOURCE_DIR}
+
+make
+
+make install
+
+cd -
