@@ -7,7 +7,7 @@ from subprocess import PIPE
 
 def extract_video_color(video_url) :
     path = os.path.dirname(__file__)
-    command = f'{path}/video_color_extractor {video_url}'
+    command = f'{path}/color/video_color_extractor {video_url}'
     pipe = subprocess.run(command, shell=True, encoding='utf-8', stdout=PIPE)
     ret = pipe.returncode
     if ret == 0:
