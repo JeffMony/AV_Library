@@ -11,7 +11,11 @@ def is_m3u8(content_type) :
     return False
 
 def parse_video(video_url) :
-    r = requests.get(video_url)
+    headers = {
+        "User-Agent":"FFmpeg"
+    }
+    r = requests.get(video_url, headers = headers, timeout = 10)
+    print(r.status_code)
     if r.status_code == 200 or r.status_code == 206 :
         content_type = r.headers['Content-Type']
         if is_m3u8(content_type) :
