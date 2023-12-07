@@ -1,6 +1,0 @@
-
-
-#define CHECK_DURATION 5000
-#define DARK_COLOR 120
-#define COLOR_PERCENT 0.1
-#define PRINT_LOG 0
